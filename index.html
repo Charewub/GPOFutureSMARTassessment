@@ -78,7 +78,7 @@ body { font-family: 'Sarabun', sans-serif; background-color: #f1f5f9; color: #1e
     <div class="bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-slate-100">
         <div class="report-header p-6 flex justify-between items-center text-white">
             <div class="flex items-center gap-4">
-                <div class="logo-pill"><img src=https://www.gpo.or.th/_next/image?url=https://gpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com/Logo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-8"></div>
+                <div class="logo-pill"><img src="https://www.gpo.or.th/_next/image?url=https://gpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com/Logo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-8"></div>
                 <div class="border-l border-white/30 pl-4 font-bold text-base uppercase" id="display-user-name"></div>
             </div>
             <div class="text-right"><span id="q-idx" class="text-3xl font-black italic">01</span><span id="q-total" class="opacity-50 text-sm">/90</span></div>
@@ -86,15 +86,15 @@ body { font-family: 'Sarabun', sans-serif; background-color: #f1f5f9; color: #1e
         <div class="w-full bg-slate-100 h-2"><div id="progress-bar" class="bg-[#00a859] h-full transition-all duration-300" style="width:0%"></div></div>
         <div class="p-8 lg:p-12">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative min-h-[200px]">
-    <button onclick="vote('A')" class="p-8 border-2 border-slate-100 rounded-2xl text-left bg-white shadow-sm hover:border-[#004a99] hover:bg-blue-50 transition-all flex items-center justify-center">
-        <span id="id-a" class="hidden"></span>
-        <p id="text-a" class="text-slate-700 text-lg font-medium"></p>
-    </button>
-    <button onclick="vote('B')" class="p-8 border-2 border-slate-100 rounded-2xl text-left bg-white shadow-sm hover:border-[#004a99] hover:bg-blue-50 transition-all flex items-center justify-center">
-        <span id="id-b" class="hidden"></span>
-        <p id="text-b" class="text-slate-700 text-lg font-medium"></p>
-    </button>
-</div>
+                <button onclick="vote('A')" class="p-8 border-2 border-slate-100 rounded-2xl text-left bg-white shadow-sm hover:border-[#004a99] hover:bg-blue-50 transition-all flex items-center justify-center">
+                    <span id="id-a" class="hidden"></span>
+                    <p id="text-a" class="text-slate-700 text-lg font-medium"></p>
+                </button>
+                <button onclick="vote('B')" class="p-8 border-2 border-slate-100 rounded-2xl text-left bg-white shadow-sm hover:border-[#004a99] hover:bg-blue-50 transition-all flex items-center justify-center">
+                    <span id="id-b" class="hidden"></span>
+                    <p id="text-b" class="text-slate-700 text-lg font-medium"></p>
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -105,7 +105,7 @@ body { font-family: 'Sarabun', sans-serif; background-color: #f1f5f9; color: #1e
         <div>
             <div class="report-header p-8 text-white flex flex-col md:flex-row justify-between items-center gap-6 relative">
                 <div class="flex flex-col md:flex-row items-center gap-6">
-                    <div class="logo-pill"><img src="https://www.gpo.or.th/_next/image?url=https%3A%2F%2Fgpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com%2FLogo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-10"></div>
+                    <div class="logo-pill"><img src="https://www.gpo.or.th/_next/image?url=https://gpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com/Logo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-10"></div>
                     <div class="h-12 w-px bg-white/20 mx-2 hidden md:block"></div>
                     <div class="text-center md:text-left">
                         <h1 class="text-3xl font-black uppercase tracking-tight italic leading-none">ASSESSMENT PROFILE</h1>
@@ -495,8 +495,10 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
 
 const render = () => {
     const q = questions[currentIdx];
-    document.getElementById('id-a').innerText = q.A.id;
-    document.getElementById('id-b').innerText = q.B.id;
+    // ตรวจสอบก่อนเพื่อป้องกัน Error กรณีซ่อน ID ไว้
+    if(document.getElementById('id-a')) document.getElementById('id-a').innerText = q.A.id;
+    if(document.getElementById('id-b')) document.getElementById('id-b').innerText = q.B.id;
+    
     document.getElementById('text-a').innerText = q.A.t;
     document.getElementById('text-b').innerText = q.B.t;
     document.getElementById('q-idx').innerText = String(currentIdx+1).padStart(2, '0');
@@ -539,6 +541,7 @@ const finish = () => {
         return score; 
     });
 
+    // --- สร้างการ์ด Mastery (L1, L2, L3) ---
     const scUI = document.getElementById('rpt-scores');
     cs.forEach((k, i) => {
         const score = finalScores[i];
@@ -559,6 +562,7 @@ const finish = () => {
             </div>`;
     });
 
+    // --- สร้างกราฟแท่ง Readiness / Gap ---
     const gapUI = document.getElementById('gap-list');
     cs.forEach((k, i) => {
         const score = finalScores[i];
@@ -582,10 +586,9 @@ const finish = () => {
             </div>`;
     });
 
-    // 4. SORT SCORES & INJECT SMART PROFILE (ใช้ L3 เป็น Tie-breaker)
+    // --- SORT SCORES & INJECT SMART PROFILE (ใช้ L3 เป็น Tie-breaker) ---
     const sortedScores = cs.map((k, i) => {
         const arr = results[k];
-        // นับว่าในหมวดนี้ เลือก L3 ไปกี่ครั้ง
         const countL3 = arr.filter(val => val === 3).length; 
         return { 
             key: k, 
@@ -593,11 +596,8 @@ const finish = () => {
             l3Count: countL3 
         };
     }).sort((a, b) => {
-        // 1. เรียงตามคะแนนรวม (มากไปน้อย)
         if (b.score !== a.score) return b.score - a.score;
-        // 2. ถ้าคะแนนเท่ากัน ให้ดูจำนวนครั้งที่เลือก L3 (มากไปน้อย)
         if (b.l3Count !== a.l3Count) return b.l3Count - a.l3Count;
-        // 3. ถ้ายังเท่ากันอีก ค่อยใช้ตัวอักษรตั้งต้น (S M A R T) ตัดสิน
         return cs.indexOf(a.key) - cs.indexOf(b.key);
     });
     
@@ -617,6 +617,7 @@ const finish = () => {
     document.getElementById('bright-side-list').innerHTML = myProfile.bright.map(t => `<li>${t}</li>`).join("");
     document.getElementById('blind-spot-list').innerHTML = myProfile.blind.map(t => `<li>${t}</li>`).join("");
 
+    // --- วาดกราฟ Radar Chart (ซ่อนตัวเลขและ Hover) ---
     new Chart(document.getElementById('radarChart'), {
         type: 'radar',
         data: {
@@ -632,7 +633,7 @@ const finish = () => {
                     pointRadius: 5,
                     pointHoverRadius: 8,
                     datalabels: {
-                        display: false // ปิดการโชว์ตัวเลขบนกราฟ
+                        display: false // ปิดตัวเลขบนกราฟ
                     }
                 },
                 { data: [3,3,3,3,3], borderColor: 'rgba(59, 130, 246, 0.25)', borderWidth: 1, fill: false, pointRadius: 0, datalabels: { display: false } },
@@ -652,10 +653,30 @@ const finish = () => {
             },
             plugins: { 
                 legend: { display: false },
-                tooltip: { enabled: false } // ปิดกรอบข้อความเวลาเอาเมาส์ไปชี้
+                tooltip: { enabled: false } // ปิด Tooltip เวลา Hover
             }
         }
     });
+
+    // ========================================================
+    // 🔥 ส่งข้อมูลเข้า GOOGLE SHEETS 🔥
+    // ========================================================
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxcpfPIQxC2MNGiwupW_uAReMjYUCKHQdMya_j7__MhGk2URADu9vyxfrKjrOh5LlOe/exec'; 
+
+    const formData = new URLSearchParams();
+    formData.append('name', userData.name);
+    formData.append('email', userData.email);
+    formData.append('profile', profileKey);
+    formData.append('score_s', finalScores[0].toFixed(2));
+    formData.append('score_m', finalScores[1].toFixed(2));
+    formData.append('score_a', finalScores[2].toFixed(2));
+    formData.append('score_r', finalScores[3].toFixed(2));
+    formData.append('score_t', finalScores[4].toFixed(2));
+
+    fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => console.log('Data saved to Google Sheets successfully!'))
+        .catch(error => console.error('Error saving data:', error));
+
 };
 </script>
 </body>
