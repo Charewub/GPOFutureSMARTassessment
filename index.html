@@ -23,7 +23,7 @@ body { font-family: 'Sarabun', sans-serif; background-color: #f1f5f9; color: #1e
     body { background-color: white !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     
     /* ซ่อนปุ่มและส่วนที่ไม่ต้องการให้โชว์ใน PDF */
-    #login-section, #quiz-section, .print-hide { display: none !important; }
+    #login-section, #intro-section, #quiz-section, .print-hide { display: none !important; }
 
     /* ลบขอบ Container หลักออก เพื่อให้แบ่งหน้าได้เนียนตา */
     #report-section > div { box-shadow: none !important; border: 1px solid #e2e8f0 !important; border-radius: 0 !important; }
@@ -63,22 +63,98 @@ body { font-family: 'Sarabun', sans-serif; background-color: #f1f5f9; color: #1e
 
 <div id="login-section" class="w-full max-w-md bg-white p-10 rounded-[2.5rem] shadow-2xl fade-in mt-10 border-t-8 border-[#004a99]">
     <div class="text-center mb-8">
-        <img src="https://www.gpo.or.th/_next/image?url=https://gpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com/Logo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-20 mx-auto mb-6">
+        <img src="https://www.gpo.or.th/_next/image?url=https://gpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com/Logo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-20 mx-auto mb-6 object-contain">
         <h1 class="text-2xl font-bold text-[#004a99] uppercase italic">SMART Managerial Competency</h1>
         <p class="text-slate-400 text-sm mt-1 italic">Official Testing System (90 Items)</p>
     </div>
     <form id="login-form" class="space-y-6">
         <input type="text" id="user-name" required pattern="[A-Za-z\s]+" class="w-full px-5 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-400 text-center text-lg" placeholder="Full Name (English)">
         <input type="email" id="user-email" required class="w-full px-5 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-400 text-center text-lg" placeholder="Official Email">
-        <button type="submit" class="w-full bg-[#004a99] text-white py-4 rounded-xl font-bold text-lg uppercase tracking-widest shadow-lg hover:brightness-110">Start Assessment</button>
+        <button type="submit" class="w-full bg-[#004a99] text-white py-4 rounded-xl font-bold text-lg uppercase tracking-widest shadow-lg hover:brightness-110">Proceed</button>
     </form>
+</div>
+<div id="intro-section" class="hidden w-full max-w-3xl bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl fade-in mt-6 border-t-8 border-[#00a859]">
+    <div class="text-center mb-8">
+        <img src="https://www.gpo.or.th/_next/image?url=https%3A%2F%2Fgpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com%2FLogo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-16 mx-auto mb-4 object-contain">
+        <h2 class="text-3xl font-black text-[#004a99] uppercase italic tracking-tight">ยินดีต้อนรับสู่แบบประเมิน</h2>
+        <p class="text-slate-500 font-bold mt-2" id="welcome-name">GPO SMART Assessment</p>
+    </div>
+
+    <div class="space-y-6 text-slate-700 text-sm md:text-base leading-relaxed mb-10">
+        <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
+            <h3 class="font-bold text-[#004a99] text-lg mb-2">🎯 แนะนำแบบประเมิน</h3>
+            <p>แบบประเมินชุดนี้ถูกออกแบบมาเพื่อค้นหา <strong>'รูปแบบการทำงาน'</strong> และ <strong>'สมรรถนะด้านการบริหารจัดการ'</strong> ที่โดดเด่นของคุณ (SMART Profile) รวมถึงระบุจุดแข็งและโอกาสในการพัฒนาขีดความสามารถที่ซ่อนอยู่</p>
+            <p class="mt-2 text-rose-600 font-semibold">⚠️ การประเมินนี้ ไม่สามารถทำซ้ำได้ (One-time shot)</p>
+            <p class="mt-2">ผลลัพธ์ที่ได้จะเป็นประโยชน์โดยตรงต่อการวางแผนเส้นทางความก้าวหน้าในสายอาชีพ (Career Path) ของตัวท่านเอง จึงขอความร่วมมือให้ท่านจัดสรรเวลาอยู่ในสภาพแวดล้อมที่ไม่มีสิ่งรบกวน มีสมาธิ และตั้งใจทำแบบประเมินนี้อย่างเต็มที่ เพื่อให้ภาพสะท้อนที่ออกมาแม่นยำและเป็นประโยชน์ต่อตัวท่านมากที่สุด</p>
+        </div>
+
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+            <h3 class="font-bold text-slate-800 text-lg mb-2">🔒 การคุ้มครองข้อมูลส่วนบุคคลและวัตถุประสงค์</h3>
+            <p>ข้อมูลของท่านจะถูกเก็บรักษาเป็นความลับอย่างเคร่งครัดตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล (PDPA)</p>
+            <p class="mt-2"><strong>ข้อตกลงและเงื่อนไขสำคัญ:</strong> ผลลัพธ์ที่ได้จากแบบประเมินนี้ <span class="text-rose-600 font-bold">'จะไม่มีผลกระทบใด ๆ'</span> ต่อการประเมินผลการปฏิบัติงาน (KPI) การพิจารณาความดีความชอบ โบนัส หรือการปรับตำแหน่งของท่านแต่อย่างใด</p>
+            <p class="mt-2"><strong>เป้าหมายเดียวของแบบประเมินนี้</strong> คือการวิเคราะห์หาช่องว่างทางสมรรถนะ (Competency Gap) เพื่อให้องค์กรสามารถทำความเข้าใจและจัดสรร 'หลักสูตรการฝึกอบรม (Training)' หรือ 'โปรแกรมการพัฒนาบุคลากร' ที่เหมาะสมและตอบโจทย์ศักยภาพของพนักงานแต่ละท่านได้อย่างมีประสิทธิภาพสูงสุด</p>
+        </div>
+
+        <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100">
+            <h3 class="font-bold text-emerald-800 text-lg mb-2">📝 คำแนะนำในการทำแบบประเมิน</h3>
+            <p>แบบประเมินนี้มีทั้งหมด <strong>90 ข้อ</strong> (เป็นคำถามแบบให้เลือกข้อความที่ตรงกับตัวท่านมากที่สุด จาก 2 ตัวเลือก A หรือ B)</p>
+            <p class="mt-2 mb-2 font-semibold">เพื่อให้ผลลัพธ์สะท้อนตัวตนของท่านได้อย่างแม่นยำที่สุด ขอให้ท่านปฏิบัติตามคำแนะนำดังนี้:</p>
+            <ul class="list-disc pl-5 space-y-2 marker:text-emerald-500">
+                <li><strong>อย่าคิดนาน หรือวิเคราะห์จนเกินไป:</strong> ขอให้ท่านเลือกคำตอบโดยใช้ 'ความรู้สึกแรก' (First Impression) หรือแวบแรกที่รู้สึกว่าตรงกับความเป็นจริงของท่านมากที่สุด</li>
+                <li><strong>หากรู้สึกว่าตรงกับตัวเองทั้ง 2 ข้อ:</strong> ในบางข้อความท่านอาจพบว่าทั้งตัวเลือก A และ B ต่างก็เป็นพฤติกรรมที่ท่านทำทั้งคู่ ในกรณีนี้ ขอให้ท่านเลือกข้อที่ท่าน <u>'ทำบ่อยครั้งกว่า'</u> หรือมีความถี่ในการแสดงพฤติกรรมนั้นในการทำงานจริงมากกว่า</li>
+                <li><strong>ตอบตามความเป็นจริง:</strong> ไม่จำเป็นต้องเลือกข้อที่ดูดีที่สุด แต่ให้เลือกข้อที่ตรงกับสไตล์การทำงานของท่านในปัจจุบันมากที่สุด</li>
+            </ul>
+        </div>
+    </div>
+
+    <button onclick="startQuiz()" class="w-full bg-[#00a859] text-white py-4 rounded-xl font-bold text-lg uppercase tracking-widest shadow-lg hover:brightness-110 transition-all">
+        [ ฉันเข้าใจและพร้อมที่จะเริ่มต้นทำแบบประเมิน ]
+    </button>
+</div>
+<div id="intro-section" class="hidden w-full max-w-3xl bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl fade-in mt-6 border-t-8 border-[#004a99]">
+    <div class="text-center mb-8">
+        <img src="https://www.gpo.or.th/_next/image?url=https://gpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com/Logo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-16 mx-auto mb-4 object-contain">
+        <h2 class="text-3xl font-black text-[#004a99] uppercase italic tracking-tight">ยินดีต้อนรับสู่แบบประเมิน</h2>
+        <p class="text-slate-500 font-bold mt-2">GPO SMART Assessment</p>
+    </div>
+
+    <div class="space-y-6 text-slate-700 text-base leading-relaxed mb-10">
+        <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
+            <h3 class="font-bold text-[#004a99] text-lg mb-2">🎯 แนะนำแบบประเมิน</h3>
+            <p>แบบประเมินชุดนี้ถูกออกแบบมาเพื่อค้นหา <strong>'รูปแบบการทำงาน'</strong> และ <strong>'สมรรถนะด้านการบริหารจัดการ'</strong> ที่โดดเด่นของคุณ (SMART Profile) รวมถึงระบุจุดแข็งและโอกาสในการพัฒนาขีดความสามารถที่ซ่อนอยู่</p>
+            <p class="mt-2 text-rose-600 font-semibold">⚠️ การประเมินนี้ ไม่สามารถทำซ้ำได้ (One-time shot)</p>
+            <p class="mt-2">ผลลัพธ์ที่ได้จะเป็นประโยชน์โดยตรงต่อการวางแผนเส้นทางความก้าวหน้าในสายอาชีพ (Career Path) ของตัวท่านเอง จึงขอความร่วมมือให้ท่านจัดสรรเวลาอยู่ในสภาพแวดล้อมที่ไม่มีสิ่งรบกวน มีสมาธิ และตั้งใจทำแบบประเมินนี้อย่างเต็มที่ เพื่อให้ภาพสะท้อนที่ออกมาแม่นยำและเป็นประโยชน์ต่อตัวท่านมากที่สุด</p>
+        </div>
+
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+            <h3 class="font-bold text-slate-800 text-lg mb-2">🔒 การคุ้มครองข้อมูลส่วนบุคคลและวัตถุประสงค์</h3>
+            <p>ข้อมูลของท่านจะถูกเก็บรักษาเป็นความลับอย่างเคร่งครัดตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล (PDPA)</p>
+            <p class="mt-2"><strong>ข้อตกลงและเงื่อนไขสำคัญ:</strong> ผลลัพธ์ที่ได้จากแบบประเมินนี้ <span class="text-rose-600 font-bold">'จะไม่มีผลกระทบใด ๆ'</span> ต่อการประเมินผลการปฏิบัติงาน (KPI) การพิจารณาความดีความชอบ โบนัส หรือการปรับตำแหน่งของท่านแต่อย่างใด</p>
+            <p class="mt-2"><strong>เป้าหมายเดียวของแบบประเมินนี้</strong> คือการวิเคราะห์หาช่องว่างทางสมรรถนะ (Competency Gap) เพื่อให้องค์กรสามารถทำความเข้าใจและจัดสรร 'หลักสูตรการฝึกอบรม (Training)' หรือ 'โปรแกรมการพัฒนาบุคลากร' ที่เหมาะสมและตอบโจทย์ศักยภาพของพนักงานแต่ละท่านได้อย่างมีประสิทธิภาพสูงสุด</p>
+        </div>
+
+        <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100">
+            <h3 class="font-bold text-emerald-800 text-lg mb-2">📝 คำแนะนำในการทำแบบประเมิน</h3>
+            <p>แบบประเมินนี้มีทั้งหมด <strong>90 ข้อ</strong> (เป็นคำถามแบบให้เลือกข้อความที่ตรงกับตัวท่านมากที่สุด จาก 2 ตัวเลือก A หรือ B)</p>
+            <p class="mt-2 mb-2 font-semibold">เพื่อให้ผลลัพธ์สะท้อนตัวตนของท่านได้อย่างแม่นยำที่สุด ขอให้ท่านปฏิบัติตามคำแนะนำดังนี้:</p>
+            <ul class="list-disc pl-5 space-y-2 marker:text-emerald-500">
+                <li><strong>อย่าคิดนาน หรือวิเคราะห์จนเกินไป:</strong> ขอให้ท่านเลือกคำตอบโดยใช้ 'ความรู้สึกแรก' (First Impression) หรือแวบแรกที่รู้สึกว่าตรงกับความเป็นจริงของท่านมากที่สุด</li>
+                <li><strong>หากรู้สึกว่าตรงกับตัวเองทั้ง 2 ข้อ:</strong> ในบางข้อความท่านอาจพบว่าทั้งตัวเลือก A และ B ต่างก็เป็นพฤติกรรมที่ท่านทำทั้งคู่ ในกรณีนี้ ขอให้ท่านเลือกข้อที่ท่าน <u>'ทำบ่อยครั้งกว่า'</u> หรือมีความถี่ในการแสดงพฤติกรรมนั้นในการทำงานจริงมากกว่า</li>
+                <li><strong>ตอบตามความเป็นจริง:</strong> ไม่จำเป็นต้องเลือกข้อที่ดูดีที่สุด แต่ให้เลือกข้อที่ตรงกับสไตล์การทำงานของท่านในปัจจุบันมากที่สุด</li>
+            </ul>
+        </div>
+    </div>
+
+    <button onclick="startQuiz()" class="w-full bg-[#004a99] text-white py-4 rounded-xl font-bold text-lg uppercase tracking-widest shadow-lg hover:brightness-110 transition-all">
+        [ ฉันเข้าใจและพร้อมที่จะเริ่มต้นทำแบบประเมิน ]
+    </button>
 </div>
 
 <div id="quiz-section" class="hidden w-full a4-container fade-in mt-6">
     <div class="bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-slate-100">
         <div class="report-header p-6 flex justify-between items-center text-white">
             <div class="flex items-center gap-4">
-                <div class="logo-pill"><img src="https://www.gpo.or.th/_next/image?url=https://gpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com/Logo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-8"></div>
+                <div class="logo-pill"><img src="https://www.gpo.or.th/_next/image?url=https%3A%2F%2Fgpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com%2FLogo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-8 object-contain"></div>
                 <div class="border-l border-white/30 pl-4 font-bold text-base uppercase" id="display-user-name"></div>
             </div>
             <div class="text-right"><span id="q-idx" class="text-3xl font-black italic">01</span><span id="q-total" class="opacity-50 text-sm">/90</span></div>
@@ -105,7 +181,7 @@ body { font-family: 'Sarabun', sans-serif; background-color: #f1f5f9; color: #1e
         <div>
             <div class="report-header p-8 text-white flex flex-col md:flex-row justify-between items-center gap-6 relative">
                 <div class="flex flex-col md:flex-row items-center gap-6">
-                    <div class="logo-pill"><img src="https://www.gpo.or.th/_next/image?url=https://gpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com/Logo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-10"></div>
+                    <div class="logo-pill"><img src="https://www.gpo.or.th/_next/image?url=https%3A%2F%2Fgpo-aws-s3-images-bucket.s3.ap-southeast-1.amazonaws.com%2FLogo_GPO_bd45d53ae3.png&w=1920&q=75" alt="GPO" class="h-10 object-contain"></div>
                     <div class="h-12 w-px bg-white/20 mx-2 hidden md:block"></div>
                     <div class="text-center md:text-left">
                         <h1 class="text-3xl font-black uppercase tracking-tight italic leading-none">ASSESSMENT PROFILE</h1>
@@ -480,6 +556,7 @@ const questions = rawData.map(q => {
 
 let currentIdx = 0; 
 let results = { S: [], M: [], A: [], R: [], T: [] };
+let chosenAnswers = []; // <-- เพิ่มบรรทัดนี้เพื่อเก็บรหัสคำตอบ 90 ข้อ
 let userData = { name: '', email: '' };
 
 document.getElementById('login-form').addEventListener('submit', (e) => {
@@ -487,11 +564,22 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
     userData.name = document.getElementById('user-name').value;
     userData.email = document.getElementById('user-email').value;
     document.getElementById('display-user-name').innerText = userData.name;
+    
+    // ใส่ชื่อผู้ทำแบบประเมินลงในหน้า Intro
+    document.getElementById('welcome-name').innerText = `คุณ ${userData.name}`;
+    
+    // ซ่อนหน้า Login แล้วเปิดหน้า Intro (ไม่เปิดหน้าข้อสอบทันที)
     document.getElementById('login-section').classList.add('hidden');
+    document.getElementById('intro-section').classList.remove('hidden');
+});
+
+// ฟังก์ชันใหม่ที่ถูกเรียกเมื่อกดปุ่ม "เข้าใจและพร้อมทำแบบประเมิน"
+const startQuiz = () => {
+    document.getElementById('intro-section').classList.add('hidden');
     document.getElementById('quiz-section').classList.remove('hidden');
     document.getElementById('q-total').innerText = `/${questions.length}`;
     render();
-});
+};
 
 const render = () => {
     const q = questions[currentIdx];
@@ -508,6 +596,7 @@ const render = () => {
 const vote = (ch) => {
     const pick = questions[currentIdx][ch];
     results[pick.c].push(pick.l);
+    chosenAnswers.push(pick.id); // <-- เพิ่มบรรทัดนี้ ให้ดึงรหัสมาเก็บไว้
     if(++currentIdx < questions.length) render(); else finish();
 };
 
@@ -672,7 +761,8 @@ const finish = () => {
     formData.append('score_a', finalScores[2].toFixed(2));
     formData.append('score_r', finalScores[3].toFixed(2));
     formData.append('score_t', finalScores[4].toFixed(2));
-
+// 👇 เพิ่มบรรทัดนี้เข้าไป (นำ Array มาแปลงเป็น text คั่นด้วยลูกน้ำ)
+    formData.append('all_answers', chosenAnswers.join(', '));
     fetch(scriptURL, { method: 'POST', body: formData })
         .then(response => console.log('Data saved to Google Sheets successfully!'))
         .catch(error => console.error('Error saving data:', error));
